@@ -6,8 +6,8 @@ uniform dvec2 screen_size;
 uniform dvec2 center;
 uniform double zoom;
 uniform int itr;
-uniform dvec2 arg;
 uniform dvec2 constant;
+uniform int exponent;
 
 vec4 map_to_color(float t) {
     float r = 9.0 * (1.0 - t) * t * t * t;
@@ -16,7 +16,19 @@ vec4 map_to_color(float t) {
 
     return vec4(r, g, b, 1.0);
 }
-
+dvec2 pow(dvec2 num, int exp){
+    int j;
+    dvec2 ans;
+    ans.x = 1;
+    ans.y = 0;
+    for(j=0; j<exp; j++){
+        double x = ans.x * num.x - ans.y * num.y;
+        double y = ans.y * num.x + ans.x * num.y;
+        ans.x = x;
+        ans. y = y;
+    }
+    return ans;
+}
 void main()
 {
     dvec2 z, c;
@@ -33,8 +45,12 @@ void main()
     c.y = constant.y;
     int i;
     for(i = 0; i < itr; i++) {
-        double x = (z.x * z.x - z.y * z.y) + c.x;
-		double y = (z.y * z.x + z.x * z.y) + c.y;
+        dvec2 p = pow(z, int(exponent));
+        //double x = (z.x * z.x - z.y * z.y) + c.x;
+		//double y = (z.y * z.x + z.x * z.y) + c.y;
+        double x = p.x + c.x;
+        double y = p.y + c.y;
+
 
 		if((x * x + y * y) > 4.0) break;
 		z.x = x;

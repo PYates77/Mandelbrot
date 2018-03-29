@@ -96,34 +96,24 @@ static void key_callback(GLFWwindow* window, int key, int scancode, int action, 
 		fragment_shader = "../julia_shader.glsl";
 	} else if(keys[GLFW_KEY_1]) {
         exponent = 2;
-		direction = 0;
     } else if(keys[GLFW_KEY_2]) {
         exponent = 3;
-		direction = PI/12;
     }else if(keys[GLFW_KEY_3]) {
         exponent = 4;
-		direction = 2*PI/12;
     }else if(keys[GLFW_KEY_4]) {
         exponent = 5;
-        direction = 3*PI/12;
     }else if(keys[GLFW_KEY_5]) {
         exponent = 6;
-        direction = 4*PI/12;
     }else if(keys[GLFW_KEY_6]) {
         exponent = 7;
-		direction = 5*PI/12;
     }else if(keys[GLFW_KEY_7]) {
         exponent = 8;
-		direction = 6*PI/12;
     }else if(keys[GLFW_KEY_8]) {
         exponent = 9;
-		direction = 7*PI/12;
     }else if(keys[GLFW_KEY_9]) {
         exponent = 12;
-		direction = 8*PI/12;
     }else if(keys[GLFW_KEY_0]) {
         exponent = 11;
-		direction = 9*PI/12;
     }else if(keys[GLFW_KEY_LEFT_BRACKET]) {
         direction -= 0.01;
     }else if(keys[GLFW_KEY_RIGHT_BRACKET]) {
@@ -304,7 +294,7 @@ int main(int argc, char *argv[])
 	glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, GL_TRUE);
 	glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
 
-	window = glfwCreateWindow(w, h, "Mandelbrot", NULL , NULL); //switch 1st NULL to glfwGetPrimaryMonitor() for fullscreen
+	window = glfwCreateWindow(w, h, "Mandelbrot", glfwGetPrimaryMonitor()  , NULL); //switch 1st NULL to glfwGetPrimaryMonitor() for fullscreen
 	if(!window) {
 		std::cerr << "Failed to create window" << std::endl;
 		return 1;
@@ -352,11 +342,11 @@ int main(int argc, char *argv[])
 	};
     float texturePoints[] = {
 			-1.0f,  1.0f,  0.0f, 	0.0f, 0.0f,	//top left
-			-1.0f,  0.8f,  0.0f, 	0.0f, 1.0f,	//bottom left
-			-0.75f,  0.8f,  0.0f, 	1.0f, 1.0f,//bottom right
+			-1.0f,  0.88f,  0.0f, 	0.0f, 1.0f,	//bottom left
+			-0.75f,  0.88f,  0.0f, 	1.0f, 1.0f,//bottom right
 
 			-1.0f,  1.0f,  0.0f, 	0.0f, 0.0f,//top left
-			-0.75f,  0.8f,  0.0f, 	1.0f, 1.0f,//bottom right
+			-0.75f,  0.88f,  0.0f, 	1.0f, 1.0f,//bottom right
 			-0.75f,  1.0f,  0.0f, 	1.0f, 0.0f,// top right
 
 	};
@@ -380,9 +370,9 @@ int main(int argc, char *argv[])
 	glBindVertexArray (vao[1]);
 	glEnableVertexAttribArray (0);
 	glBindBuffer (GL_ARRAY_BUFFER, vbo[1]);
-	glVertexAttribPointer (0, 3, GL_FLOAT, GL_FALSE, 0, NULL);
+	glVertexAttribPointer (0, 3, GL_FLOAT, GL_FALSE, 5*sizeof(float), NULL);
 	glEnableVertexAttribArray (1);
-	glVertexAttribPointer (1, 2, GL_FLOAT, GL_FALSE, 0, (void*)(3*sizeof(float)));
+	glVertexAttribPointer (1, 2, GL_FLOAT, GL_FALSE, 5*sizeof(float), (void*)(3*sizeof(float)));
 
 	glUseProgram (prog);
 
@@ -400,12 +390,14 @@ int main(int argc, char *argv[])
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+	glEnable (GL_BLEND);
+	glBlendFunc (GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 	// load and generate the texture
 	int width, height, nrChannels;
-	unsigned char *data = stbi_load("../Signature.png", &width, &height, &nrChannels, 0);
+	unsigned char *data = stbi_load("../Signature.png", &width, &height, &nrChannels, STBI_rgb_alpha);
 	if (data)
 	{
-		glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, width, height, 0, GL_RGB, GL_UNSIGNED_BYTE, data);
+		glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, width, height, 0, GL_RGBA, GL_UNSIGNED_BYTE, data);
 		glGenerateMipmap(GL_TEXTURE_2D);
 	}
 	else
@@ -429,6 +421,7 @@ int main(int argc, char *argv[])
 
 			std::cout << "Reloaded shader: " << last_mtime << std::endl;
 		}
+		glUseProgram(prog);
 
 		glfwGetWindowSize(window, &w, &h);
 		glUniform2d(glGetUniformLocation(prog, "screen_size"), (double)w, (double)h);
@@ -443,6 +436,7 @@ int main(int argc, char *argv[])
 
 		glDrawArrays (GL_TRIANGLES, 0, 6);
 
+		glUseProgram(texture_prog);
 		glBindVertexArray(vao[1]);
 		glBindBuffer(GL_ARRAY_BUFFER,vbo[1]);
 
