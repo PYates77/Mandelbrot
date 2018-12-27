@@ -18,19 +18,20 @@ Then get upset when it fails, fix a dependency, and try again.
 
 ## Using
 
-There are some handy dandy keybindings that I built in
+There are some handy-dandy keybindings that I built in
 
 ESC - Exit the program
 
 W/A/S/D - Move around 
 
--/+ - Change the number of iterations used for each cordinate in the set
+-/+ - Change the number of iterations used before the program decides that an expression diverges or not
 
 M/J - Change between mandelbrot and julia sets
 
-0-9 - Change the exponent between 2 and 11 (where the 1 key is 2 and the 0 key is 11)
+0-9 - Change the exponent between 2 and 11 (where the 1 key is 2 and the 0 key is 11, it's just the way the keys are laid out on the keyboard... try swiping your finger across all the numbers, that's fun)
 
 [/] - Change the angle of the constant, c, in the julia expression (c = magnitude\*cos(angle)+i\*magnitude\*sin(angle)
 
 ;/' - Semicolon and apostraphe (I know, super intuitive controls, Paul) change the magnitude of the constant, c, in the julia expression (c = magnitude\*cos(angle)+i\*magnitude\*sin(angle)
 
+Scrolling the mouse in and out changes the zoom level. Clicking the mouse is supposed to move you around the image, but it doesn't work very well right now, so if anybody actually goes through the effort of fixing that, they should hit me with a merge request. 
