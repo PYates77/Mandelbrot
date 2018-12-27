@@ -9,7 +9,7 @@ Dependencies include GLEW, GLUT, and OpenGL. Honestly I don't remember everythin
 If you're on mac... god help you. 
 
 After that it's your normal cmake process of building
-```c
+```bash
 mkdir build && cd build
 cmake ..
 make 
@@ -21,9 +21,16 @@ Then get upset when it fails, fix a dependency, and try again.
 There are some handy dandy keybindings that I built in
 
 ESC - Exit the program
+
 W/A/S/D - Move around 
+
 -/+ - Change the number of iterations used for each cordinate in the set
+
 M/J - Change between mandelbrot and julia sets
+
 0-9 - Change the exponent between 2 and 11 (where the 1 key is 2 and the 0 key is 11)
+
 [/] - Change the angle of the constant, c, in the mandelbrot/julia expression (c = magnitude\*cos(angle)+i\*magnitude\*sin(angle)
+
 ;/' - Semicolon and apostraphe (I know, super intuitive controls, Paul) change the magnitude of the constant, c, in the mandelbrot/julia expression (c = magnitude\*cos(angle)+i\*magnitude\*sin(angle)
+
