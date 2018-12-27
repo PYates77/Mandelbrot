@@ -84,9 +84,9 @@ static void key_callback(GLFWwindow* window, int key, int scancode, int action, 
 	} else if(keys[GLFW_KEY_S]) {
 		cy -= d;
 	} else if(keys[GLFW_KEY_MINUS]) {
-		itr += 10;
-	} else if(keys[GLFW_KEY_EQUAL]) {
 		itr -= 10;
+	} else if(keys[GLFW_KEY_EQUAL]) {
+		itr += 10;
 		if(itr <= 0) {
 			itr = 0;
 		}
