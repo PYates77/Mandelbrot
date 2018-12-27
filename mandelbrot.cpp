@@ -16,7 +16,7 @@ static void error_callback(int error, const char *description) {
 	std::cerr << "GLFW Error: " << description << std::endl;
 }
 
-std::string fragment_shader = "../julia_shader.glsl";
+std::string fragment_shader = "../mandelbrot_shader.glsl";
 
 double cx = 0.0, cy = 0.0, zoom = 0.5;
 int exponent = 2;

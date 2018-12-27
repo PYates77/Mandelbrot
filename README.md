@@ -30,7 +30,7 @@ M/J - Change between mandelbrot and julia sets
 
 0-9 - Change the exponent between 2 and 11 (where the 1 key is 2 and the 0 key is 11)
 
-[/] - Change the angle of the constant, c, in the mandelbrot/julia expression (c = magnitude\*cos(angle)+i\*magnitude\*sin(angle)
+[/] - Change the angle of the constant, c, in the julia expression (c = magnitude\*cos(angle)+i\*magnitude\*sin(angle)
 
-;/' - Semicolon and apostraphe (I know, super intuitive controls, Paul) change the magnitude of the constant, c, in the mandelbrot/julia expression (c = magnitude\*cos(angle)+i\*magnitude\*sin(angle)
+;/' - Semicolon and apostraphe (I know, super intuitive controls, Paul) change the magnitude of the constant, c, in the julia expression (c = magnitude\*cos(angle)+i\*magnitude\*sin(angle)
 
