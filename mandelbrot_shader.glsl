@@ -15,7 +15,6 @@ vec4 map_to_color(float t) {
 
     return vec4(r, g, b, 1.0);
 }
-
 dvec2 pow(dvec2 num, int exp){
     int j;
     dvec2 ans;
@@ -29,33 +28,27 @@ dvec2 pow(dvec2 num, int exp){
     }
     return ans;
 }
-
 void main()
 {
     dvec2 z, c;
     c.x = screen_ratio * ( gl_FragCoord.x / screen_size.x  - 0.5);
     c.y = (gl_FragCoord.y / screen_size.y - 0.5);
 
-    c.x /= zoom;
-    c.y /= zoom;
+    z.x = 0;
+    z.y = 0;
 
     c.x += center.x;
     c.y += center.y;
 
+    c.x /= zoom;
+    c.y /= zoom;
+
     int i;
     for(i = 0; i < itr; i++) {
         dvec2 p = pow(z, int(exponent));
-        //dvec2 p;
-        //p.x = z.x;
-        //p.y = z.y;
-        //for(int i=0; i<1; i++){
-        //    double xx = p.x * z.x - p.y * z.y;
-        //    double yy = p.y * z.x + p.x * z.y;
-        //    p.x = xx;
-        //    p.y = yy;
-        //}
-        double x = p.x + c.x;
-		double y = p.y + c.y;
+
+        double x = p.x + c.x; 
+        double y = p.y + c.y;
 
 		if((x * x + y * y) > 4.0) break;
 		z.x = x;
@@ -66,3 +59,5 @@ void main()
 
     colorOut = map_to_color(float(t));
 }
+
+

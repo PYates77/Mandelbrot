@@ -46,11 +46,9 @@ void main()
     int i;
     for(i = 0; i < itr; i++) {
         dvec2 p = pow(z, int(exponent));
-        //double x = (z.x * z.x - z.y * z.y) + c.x;
-		//double y = (z.y * z.x + z.x * z.y) + c.y;
-        double x = p.x + c.x;
-        double y = p.y + c.y;
 
+        double x = p.x + c.x; 
+        double y = p.y + c.y;
 
 		if((x * x + y * y) > 4.0) break;
 		z.x = x;
@@ -61,3 +59,5 @@ void main()
 
     colorOut = map_to_color(float(t));
 }
+
+
