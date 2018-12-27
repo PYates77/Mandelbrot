@@ -3,8 +3,6 @@ project(mandelbrot)
 
 set(CMAKE_CXX_STANDARD 11)
 
-#list(APPEND CMAKE_PREFIX_PATH "E:/Tools/glew-2.1.0")
-
 # Find packages of additional libraries
  #   - GLEW
  find_package( GLEW REQUIRED )
