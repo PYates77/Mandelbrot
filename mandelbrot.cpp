@@ -4,7 +4,8 @@
 #include <string>
 #include <sstream>
 #include <vector>
-#include <glad/glad.h>
+#include <glad.h>
+#define GLFW_INCLUDE_GLCOREARB
 #include <GLFW/glfw3.h>
 #include <sys/stat.h>
 #include <cmath>
@@ -289,8 +290,8 @@ int main(int argc, char *argv[])
 
 	glfwSetErrorCallback(error_callback);
 
-	glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 4);
-	glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 1);
+	glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
+	glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
 	glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, GL_TRUE);
 	glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
 
@@ -304,7 +305,8 @@ int main(int argc, char *argv[])
 	glfwSetCursorPosCallback(window, cursor_callback);
 	glfwSetMouseButtonCallback(window, mouse_button_callback);
 	glfwSetScrollCallback(window, scroll_callback);
-	glfwSetInputMode(window, GLFW_STICKY_KEYS, GLFW_TRUE);
+    glfwSetInputMode(window, GLFW_STICKY_KEYS, true);
+    //glfwSetInputMode(window, GLFW_STICKY_KEYS, GLFW_TRUE);
     glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_NORMAL);
 
 	glfwMakeContextCurrent(window);

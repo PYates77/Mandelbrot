@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.9)
+cmake_minimum_required(VERSION 3.5)
 project(mandelbrot)
 
 set(CMAKE_CXX_STANDARD 11)
@@ -26,6 +26,9 @@ set(CMAKE_CXX_STANDARD 11)
  endif()
 
 
+include_directories("${CMAKE_SOURCE_DIR}")
+
+
 #include_directories(
 #        lib/glfw/include
 #        lib/glad/include
@@ -35,4 +38,4 @@ set(CMAKE_CXX_STANDARD 11)
 #add_subdirectory(lib/glfw)
 
 add_executable(mandelbrot glad.c mandelbrot.cpp stb_image.cpp)
-target_link_libraries(mandelbrot glfw3 X11 Xxf86vm Xrandr dl pthread)
+target_link_libraries(mandelbrot GL GLU glfw X11 Xxf86vm Xrandr dl pthread)

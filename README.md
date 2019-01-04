@@ -16,6 +16,8 @@ make
 ```
 Then get upset when it fails, fix a dependency, and try again. 
 
+Before embarking...keep in mind that openGL doesn't cooperate with VMs.
+
 ## Using
 
 Here are some handy-dandy keybindings that I built in
