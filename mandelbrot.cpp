@@ -4,7 +4,7 @@
 #include <string>
 #include <sstream>
 #include <vector>
-#include <glad/glad.h>
+#include "glad.h"
 #include <GLFW/glfw3.h>
 #include <sys/stat.h>
 #include <cmath>
@@ -16,7 +16,8 @@ static void error_callback(int error, const char *description) {
 	std::cerr << "GLFW Error: " << description << std::endl;
 }
 
-std::string fragment_shader = "../mandelbrot_shader.glsl";
+//std::string fragment_shader = "../mandelbrot_shader.glsl";
+std::string fragment_shader = "../julia_shader.glsl";
 
 double cx = 0.0, cy = 0.0, zoom = 0.5;
 int exponent = 2;
@@ -158,7 +159,7 @@ const char* texture_fragment_shader =
 static void update_window_title()
 {
 	std::ostringstream ss;
-	ss << "Mandelbrot Renderer";
+	ss << "Mandelbrot Renderer (floatingwindow)";
 	ss << ", FPS: " << fps;
 	ss << ", Iterations: " << itr;
 	ss << ", Zoom: " << zoom;
@@ -294,7 +295,8 @@ int main(int argc, char *argv[])
 	glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, GL_TRUE);
 	glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
 
-	window = glfwCreateWindow(w, h, "Mandelbrot", glfwGetPrimaryMonitor()  , NULL); //switch 1st NULL to glfwGetPrimaryMonitor() for fullscreen
+	//window = glfwCreateWindow(w, h, "Mandelbrot", glfwGetPrimaryMonitor()  , NULL); //switch 1st NULL to glfwGetPrimaryMonitor() for fullscreen
+	window = glfwCreateWindow(w, h, "Mandelbrot", NULL, NULL); //switch 1st NULL to glfwGetPrimaryMonitor() for fullscreen
 	if(!window) {
 		std::cerr << "Failed to create window" << std::endl;
 		return 1;
@@ -304,7 +306,7 @@ int main(int argc, char *argv[])
 	glfwSetCursorPosCallback(window, cursor_callback);
 	glfwSetMouseButtonCallback(window, mouse_button_callback);
 	glfwSetScrollCallback(window, scroll_callback);
-	glfwSetInputMode(window, GLFW_STICKY_KEYS, GLFW_TRUE);
+	glfwSetInputMode(window, GLFW_STICKY_KEYS, 1);
     glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_NORMAL);
 
 	glfwMakeContextCurrent(window);

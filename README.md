@@ -3,6 +3,8 @@
 I wrote this for my Advanced Programming class
 It uses C++ and OpenGL shaders to perform rendering of mandelbrot and julia sets 
 
+There's also a super-simple terminal-only version in the mandelbrot-simple version
+
 ## Building 
 
 Dependencies include GLEW, GLUT, and OpenGL. Honestly I don't remember everything I did to get the dependencies installed, but it was a pain. It definitely works on ubuntu though. It used to work on windows, so if you look back in my git revision history or something, you might the correct CMakeLists. But I distinctly remember that installing the dependencies was really hard. 
@@ -35,3 +37,11 @@ M/J - Change between mandelbrot and julia sets
 ;/' - Semicolon and apostraphe (I know, super intuitive controls, Paul) change the magnitude of the constant, c, in the julia expression (c = magnitude\*cos(angle)+i\*magnitude\*sin(angle))
 
 Scrolling the mouse in and out changes the zoom level. Clicking the mouse is supposed to move you around the image, but it doesn't work very well right now, so if anybody actually goes through the effort of fixing that, they should hit me with a merge request. 
+
+## mandelbrot-simple
+
+Some time after creating this fancy OpenGL version, I did a super simple ascii art version that you can find in the mandelbrot-simple folder
+
+To build: 
+
+`gcc mandelbrot.c -o mandelbrot -lm`

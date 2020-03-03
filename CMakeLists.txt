@@ -34,5 +34,7 @@ set(CMAKE_CXX_STANDARD 11)
 
 #add_subdirectory(lib/glfw)
 
+find_package (glfw3 REQUIRED)
+
 add_executable(mandelbrot glad.c mandelbrot.cpp stb_image.cpp)
-target_link_libraries(mandelbrot glfw3 X11 Xxf86vm Xrandr dl pthread)
+target_link_libraries(mandelbrot glfw X11 Xxf86vm Xrandr dl pthread)
