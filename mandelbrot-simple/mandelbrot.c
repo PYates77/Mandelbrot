@@ -4,14 +4,14 @@
 #include <complex.h>
 #include <math.h>
 
-#define FILL "▓▓"
-#define NOFILL "  "
+#define FILL "X"
+#define NOFILL " "
 
 #define X0 -2.0
 #define Y0 -1.5
 #define X1 1.0
 #define Y1 1.5
-#define XSTEPS 80 
+#define XSTEPS 160
 #define YSTEPS 80
 #define XSTEP (X1-X0)/XSTEPS
 #define YSTEP (Y1-Y0)/YSTEPS
@@ -23,8 +23,8 @@ int main()
 {
     double exp = 2.0;
     complex cursor = X0 + Y0*I;
-    for (int x = 0; x < XSTEPS; ++x) {
-        for (int y = 0; y < YSTEPS; ++y) {
+    for (int y = 0; y < YSTEPS; ++y) {
+        for (int x = 0; x < XSTEPS; ++x) {
             //complex z = cursor;
             complex z = 0;
             int thresh = 0;
